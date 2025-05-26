@@ -1,0 +1,65 @@
+# 1. REGISTRO (register) – devuelve { "token": "..." }
+
+curl -i -X POST \
+  http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "juan123",
+    "email": "juan@example.com",
+    "password": "secreto123"
+  }'
+
+# 2. LOGIN – devuelve { "token": "..." }
+
+curl -i -X POST \
+  http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nombre": "juan123",
+    "email": "juan@example.com",
+    "password": "secreto123"
+  }'
+
+# 3. GET ALL (listar todos los usuarios)
+
+curl -i -X GET \
+  http://localhost:3000/users \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# 4. GET ONE (obtener un usuario por ID)
+
+curl -i -X GET \
+  http://localhost:3000/users/1 \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# 5. POST (crear un nuevo usuario)
+
+curl -i -X POST \
+  http://localhost:3000/users \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{
+    "nombre": "nuevoUser",
+    "email": "nuevo@example.com",
+    "password": "otraClave789"
+  }'
+
+# 6. PUT (actualizar un usuario existente)
+
+curl -i -X PUT \
+  http://localhost:3000/users/1 \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN \
+  -d '{
+    "nombre": "juan123",
+    "email": "juan.actualizado@example.com",
+    "password": "nuevoSecreto456"
+  }'
+
+# 7. DELETE (borrar un usuario)
+
+curl -i -X DELETE \
+  http://localhost:3000/users/1\
+  -H "Authorization: Bearer $TOKEN"
